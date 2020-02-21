@@ -32,7 +32,7 @@ const Account = () => {
           item
           lg={8}
           md={6}
-          xl={8}
+            xl={8}
           xs={12}
         >
           <AccountDetails />
