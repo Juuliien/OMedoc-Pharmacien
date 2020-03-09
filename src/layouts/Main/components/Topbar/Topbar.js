@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -7,6 +7,7 @@ import { AppBar, Toolbar, Badge, Hidden, IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -34,10 +35,13 @@ const Topbar = props => {
     >
       <Toolbar>
         <RouterLink to="/">
-          <img
+          
+            <img
             alt="Logo"
-            src="/images/logos/logo--white.svg"
-          />
+            src="/images/logos/logomedoc.png"
+            width = {60}
+            />
+          
         </RouterLink>
         <div className={classes.flexGrow} />
         <Hidden mdDown>

@@ -3,54 +3,54 @@ import uuid from 'uuid/v1';
 export default [
   {
     id: uuid(),
-    title: 'Dropbox',
+    name: 'Doliprane',
     description:
-      'Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.',
+      'doliprane',
     imageUrl: '/images/products/product_1.png',
-    totalDownloads: '594',
+    totalDownloads: '291',
     updatedAt: '27/03/2019'
   },
   {
     id: uuid(),
-    title: 'Medium Corporation',
+    name: 'Gel antibactérien',
     description:
-      'Medium is an online publishing platform developed by Evan Williams, and launched in August 2012.',
+      'gel antibactérien très efficace contre les virus',
     imageUrl: '/images/products/product_2.png',
     totalDownloads: '625',
     createdAt: '31/03/2019'
   },
   {
     id: uuid(),
-    title: 'Slack',
+    name: 'Masque',
     description:
-      'Slack is a cloud-based set of team collaboration tools and services, founded by Stewart Butterfield.',
+      'masque anti-coronavirus ',
     imageUrl: '/images/products/product_3.png',
     totalDownloads: '857',
     createdAt: '03/04/2019'
   },
   {
     id: uuid(),
-    title: 'Lyft',
+    name: 'ibuprofène',
     description:
-      'Lyft is an on-demand transportation company based in San Francisco, California.',
+      'ibu - pro - faine',
     imageUrl: '/images/products/product_4.png',
     totalDownloads: '406',
     createdAt: '04/04/2019'
   },
   {
     id: uuid(),
-    title: 'GitHub',
+    name: 'huiles essentielles',
     description:
-      'GitHub is a web-based hosting service for version control of code using Git.',
+      'huiles',
     imageUrl: '/images/products/product_5.png',
     totalDownloads: '835',
     createdAt: '04/04/2019'
   },
   {
     id: uuid(),
-    title: 'Squarespace',
+    name: 'crème anti-rides',
     description:
-      'Squarespace provides software as a service for website building and hosting. Headquartered in NYC.',
+      'an-ti-rides',
     imageUrl: '/images/products/product_6.png',
     totalDownloads: '835',
     createdAt: '04/04/2019'
