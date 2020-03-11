@@ -25,10 +25,10 @@ const AccountDetails = props => {
   const [values, setValues] = useState({
     firstName: 'Paul',
     lastName: 'Marchesnay',
-    email: 'shen.zhi@devias.io',
+    email: 'paul.marchesnay@raphael.levaight',
     phone: '',
-    state: 'Alabama',
-    country: 'USA'
+    state: 'Paris',
+    country: 'France'
   });
 
   const handleChange = event => {
