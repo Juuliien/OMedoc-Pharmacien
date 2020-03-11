@@ -62,7 +62,7 @@ const TotalUsers = props => {
               gutterBottom
               variant="body2"
             >
-              TOTAL USERS
+              Clients 
             </Typography>
             <Typography variant="h3">1,600</Typography>
           </Grid>
@@ -78,13 +78,13 @@ const TotalUsers = props => {
             className={classes.differenceValue}
             variant="body2"
           >
-            16%
+            160%
           </Typography>
           <Typography
             className={classes.caption}
             variant="caption"
           >
-            Since last month
+            Depuis le dernier mois
           </Typography>
         </div>
       </CardContent>

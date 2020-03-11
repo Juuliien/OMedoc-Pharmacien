@@ -3,7 +3,8 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import EuroIcon from '@material-ui/icons/Euro';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,6 +28,19 @@ const useStyles = makeStyles(theme => ({
   icon: {
     height: 32,
     width: 32
+    
+  },
+  difference: {
+    marginTop: theme.spacing(2),
+    display: 'flex',
+    alignItems: 'center'
+  },
+  differenceIcon: {
+    color: 'white'
+  },
+  differenceValue: {
+    color: 'white',
+    marginRight: theme.spacing(1)
   }
 }));
 
@@ -52,20 +66,37 @@ const TotalProfit = props => {
               gutterBottom
               variant="body2"
             >
-              TOTAL PROFIT
+              Bénéfices
             </Typography>
             <Typography
               color="inherit"
               variant="h3"
             >
-              $23,200
+              17 000 €
             </Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
-              <AttachMoneyIcon className={classes.icon} />
+              <EuroIcon className={classes.icon} />
             </Avatar>
           </Grid>
+          <div className={classes.difference}>
+          <ArrowUpwardIcon className={classes.differenceIcon} />
+          <Typography
+            className={classes.differenceValue}
+            variant="body2"
+            color = 'inherit'
+          >
+            160%
+          </Typography>
+          <Typography
+            className={classes.caption}
+            variant="caption"
+            color = 'inherit'
+          >
+            Depuis le dernier mois
+          </Typography>
+        </div>
         </Grid>
       </CardContent>
     </Card>
