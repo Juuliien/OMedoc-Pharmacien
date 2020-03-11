@@ -8,9 +8,6 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-
-import LockOpenIcon from '@material-ui/icons/LockOpen';
-
 import { Profile, SidebarNav} from './components';
 
 const useStyles = makeStyles(theme => ({
@@ -53,20 +50,20 @@ const Sidebar = props => {
       icon: <ShoppingBasketIcon />
     },
     {
-      title: 'Authentication',
-      href: '/sign-in',
-      icon: <LockOpenIcon />
+      title: 'Commande en cours',
+      href: '/currentorder',
+      
+    },
+    {
+      title:'Commande prête',
+      href : '/readyorder',
     },
     {
       title: 'Account',
       href: '/account',
       icon: <AccountBoxIcon />
     },
-    {
-      title: 'Commande en cours',
-      href: '/currentorder',
-      
-    }
+    
   ];
 
   return (
