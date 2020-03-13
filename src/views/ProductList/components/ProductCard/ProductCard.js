@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import {Link} from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import {
@@ -12,6 +14,8 @@ import {
 } from '@material-ui/core';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import GetAppIcon from '@material-ui/icons/GetApp';
+import { renderComponent } from 'recompose';
+
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -39,77 +43,65 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ProductCard = props => {
-  const { className, product, ...rest } = props;
+/*const Product = props => (
+  <tr>
+    <td>{this.props.name}</td>
+    <td>{this.props.description}</td>
+    <td>{this.props.imageUrl}</td>
+    <td>{this.props.property}</td>
+    <td>{this.props.property}</td>
+  </tr>
+)*/
 
-  const classes = useStyles();
+class ProductCard extends Component {
 
-  return (
-    <Card
-      {...rest}
-      className={clsx(classes.root, className)}
-    >
-      <CardContent>
-        <div className={classes.imageContainer}>
-          <img
-            alt="Product"
-            className={classes.image}
-            src={product.imageUrl}
-          />
-        </div>
-        <Typography
-          align="center"
-          gutterBottom
-          variant="h4"
-        >
-          {product.title}
-        </Typography>
-        <Typography
-          align="center"
-          variant="body1"
-        >
-          {product.description}
-        </Typography>
-      </CardContent>
-      <Divider />
-      <CardActions>
-        <Grid
-          container
-          justify="space-between"
-        >
-          <Grid
-            className={classes.statsItem}
-            item
-          >
-            <AccessTimeIcon className={classes.statsIcon} />
-            <Typography
-              display="inline"
-              variant="body2"
-            >
-              Updated 2hr ago
-            </Typography>
-          </Grid>
-          <Grid
-            className={classes.statsItem}
-            item
-          >
-            <GetAppIcon className={classes.statsIcon} />
-            <Typography
-              display="inline"
-              variant="body2"
-            >
-              {product.totalDownloads} Downloads
-            </Typography>
-          </Grid>
-        </Grid>
-      </CardActions>
-    </Card>
-  );
-};
+  constructor(props) {
+    super(props);
+    this.deleteProduct = this.deleteProduct.bind(this);
+    this.state = {products: []};
+  }
 
-ProductCard.propTypes = {
-  className: PropTypes.string,
-  product: PropTypes.object.isRequired
-};
+  componentDidMount(){
+    axios.get('http://localhost:5000/products/')
+      .then(res => {
+        this.setState({products: res.data})
+      })
+      .catch((error)=> {
+        console.log("YTF?kneiujc");
+      });
+  }
+
+  deleteProduct(id){
+    axios.delete('http://localhost:5000/products/'+id)
+      .then(res => console.log("Delete "+ res.data));
+
+      this.setState({
+        //retrieve all products that are not deleted
+        products : this.state.products.filter(el => el._id !== _id)
+      });
+  }
+
+  allProducts(){
+    return this.state.products.map(currentproduct => {
+      //console.log("ICIIIII")
+      console.log(currentproduct)
+      return (
+        <tr>
+          <td>{currentproduct.name}</td>
+          <td>{currentproduct.description}</td>
+          <td>{currentproduct.imageUrl}</td>
+          <td>{currentproduct.property}</td>
+        </tr>
+      )
+      //<Product product={currentproduct} deleteProduct={this.deleteProduct} key = {currentproduct._id}/>;
+    });
+  }
+
+  render(){
+    return(
+        <div><tr>{this.allProducts()}</tr></div>
+    )
+  }
+}
 
 export default ProductCard;
