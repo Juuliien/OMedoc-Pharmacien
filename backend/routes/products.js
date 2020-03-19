@@ -11,15 +11,13 @@ router.route('/add').post((req, res) =>{
     const name = req.body.name;
     const description = req.body.description;
     const imageUrl = req.body.imageUrl;
-    const totalDownloads = Number(req.body.totalDownloads);
-    const updatedAt = req.body.updatedAt;
+    const price = Number(req.body.price);
 
     const newProduct = new Product({
         name,
         description,
         imageUrl,
-        totalDownloads, 
-        updatedAt,
+        price,
     });
 
     newProduct.save()

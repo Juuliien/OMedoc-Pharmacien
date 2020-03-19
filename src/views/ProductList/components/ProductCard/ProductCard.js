@@ -46,7 +46,7 @@ const Product = props => {
   const classes = useStyles();
 
   return (
-    <Card {...rest} className={clsx(classes.root, className)} margin-bottom="30px">
+    <Card {...rest} className={clsx(classes.root, className)} margin-bottom="30px"> 
       <CardContent>
         <div className={classes.imageContainer}>
           <img alt="Product" className={classes.image} src={product.imageUrl}/>
@@ -64,15 +64,9 @@ const Product = props => {
       <CardActions>
         <Grid container justify="space-between">
           <Grid className={classes.statsItem} item>
-            <AccessTimeIcon className={classes.statsIcon} />
-            <Typography display="inline" variant="body2">
-              Updated 2hr ago
-            </Typography>
-          </Grid>
-          <Grid className={classes.statsItem} item>
             <GetAppIcon className={classes.statsIcon} />
             <Typography display="inline" variant="body2">
-              {product.totalDownloads} Downloads
+              {product.price} €
             </Typography>
           </Grid>
         </Grid>
