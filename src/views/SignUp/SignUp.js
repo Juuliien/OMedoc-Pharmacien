@@ -1,49 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { Link as RouterLink, withRouter } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Row, Col, Form, Button, FormGroup, Label, Input } from 'reactstrap';
+import axios from 'axios';
+import './../Settings/Register.css';
+import { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import { makeStyles } from '@material-ui/styles';
-import {
-  Grid,
-  Button,
-  IconButton,
-  TextField,
-  Link,
-  FormHelperText,
-  Checkbox,
-  Typography
-} from '@material-ui/core';
+
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const schema = {
   firstName: {
-    presence: { allowEmpty: false, message: 'is required' },
-    length: {
-      maximum: 32
-    }
+    presence: { allowEmpty: false, message: 'is required' }
   },
   lastName: {
-    presence: { allowEmpty: false, message: 'is required' },
-    length: {
-      maximum: 32
-    }
+    presence: { allowEmpty: false, message: 'is required' }
   },
   email: {
     presence: { allowEmpty: false, message: 'is required' },
-    email: true,
-    length: {
-      maximum: 64
-    }
+    email: true
   },
   password: {
-    presence: { allowEmpty: false, message: 'is required' },
-    length: {
-      maximum: 128
-    }
-  },
-  policy: {
-    presence: { allowEmpty: false, message: 'is required' },
-    checked: true
+    presence: { allowEmpty: false, message: 'is required' }
   }
 };
 
@@ -127,259 +106,244 @@ const useStyles = makeStyles(theme => ({
   textField: {
     marginTop: theme.spacing(2)
   },
-  policy: {
-    marginTop: theme.spacing(1),
-    display: 'flex',
-    alignItems: 'center'
-  },
-  policyCheckbox: {
-    marginLeft: '-14px'
-  },
   signUpButton: {
     margin: theme.spacing(2, 0)
   }
 }));
 
-const SignUp = props => {
-  const { history } = props;
+/*const [formState, setFormState] = useState({
+  isValid: false,
+  values: {},
+  touched: {},
+  errors: {}
+});
+
+useEffect(() => {
+  const errors = validate(formState.values, schema);
+
+  setFormState(formState => ({
+    ...formState,
+    isValid: errors ? false : true,
+    errors: errors || {}
+  }));
+}, [formState.values]);
+*/
+/*const handleChange = event => {
+  event.persist();
+
+  setFormState(formState => ({
+    ...formState,
+    values: {
+      ...formState.values,
+      [event.target.name]:
+        event.target.type === 'checkbox'
+          ? event.target.checked
+          : event.target.value
+    },
+    touched: {
+      ...formState.touched,
+      [event.target.name]: true
+    }
+  }));
+};*/
+
+/*const handleBack = () => {
+  history.goBack();
+};
+
+const handleSignUp = event => {
+  event.preventDefault();
+  history.push('/');
+};
+
+const hasError = field =>
+  formState.touched[field] && formState.errors[field] ? true : false;
+
+
+const Pharmacist = props => {
+  const { className, pharmacist, ...rest } = props;
 
   const classes = useStyles();
 
-  const [formState, setFormState] = useState({
-    isValid: false,
-    values: {},
-    touched: {},
-    errors: {}
-  });
-
-  useEffect(() => {
-    const errors = validate(formState.values, schema);
-
-    setFormState(formState => ({
-      ...formState,
-      isValid: errors ? false : true,
-      errors: errors || {}
-    }));
-  }, [formState.values]);
-
-  const handleChange = event => {
-    event.persist();
-
-    setFormState(formState => ({
-      ...formState,
-      values: {
-        ...formState.values,
-        [event.target.name]:
-          event.target.type === 'checkbox'
-            ? event.target.checked
-            : event.target.value
-      },
-      touched: {
-        ...formState.touched,
-        [event.target.name]: true
-      }
-    }));
-  };
-
-  const handleBack = () => {
-    history.goBack();
-  };
-
-  const handleSignUp = event => {
-    event.preventDefault();
-    history.push('/');
-  };
-
-  const hasError = field =>
-    formState.touched[field] && formState.errors[field] ? true : false;
-
   return (
-    <div className={classes.root}>
-      <Grid
-        className={classes.grid}
-        container
-      >
-        <Grid
-          className={classes.quoteContainer}
-          item
-          lg={5}
-        >
-          <div className={classes.quote}>
-            <div className={classes.quoteInner}>
-              <Typography
-                className={classes.quoteText}
-                variant="h1"
-              >
-                Hella narwhal Cosby sweater McSweeney's, salvia kitsch before
-                they sold out High Life.
-              </Typography>
-              <div className={classes.person}>
-                <Typography
-                  className={classes.name}
-                  variant="body1"
-                >
-                  Takamaru Ayako
-                </Typography>
-                <Typography
-                  className={classes.bio}
-                  variant="body2"
-                >
-                  Manager at inVision
-                </Typography>
-              </div>
-            </div>
-          </div>
-        </Grid>
-        <Grid
-          className={classes.content}
-          item
-          lg={7}
-          xs={12}
-        >
-          <div className={classes.content}>
-            <div className={classes.contentHeader}>
-              <IconButton onClick={handleBack}>
-                <ArrowBackIcon />
-              </IconButton>
-            </div>
-            <div className={classes.contentBody}>
-              <form
-                className={classes.form}
-                onSubmit={handleSignUp}
-              >
-                <Typography
-                  className={classes.title}
-                  variant="h2"
-                >
-                  Create new account
-                </Typography>
-                <Typography
-                  color="textSecondary"
-                  gutterBottom
-                >
-                  Use your email to create new account
-                </Typography>
-                <TextField
-                  className={classes.textField}
-                  error={hasError('firstName')}
-                  fullWidth
-                  helperText={
-                    hasError('firstName') ? formState.errors.firstName[0] : null
-                  }
-                  label="First name"
-                  name="firstName"
-                  onChange={handleChange}
-                  type="text"
-                  value={formState.values.firstName || ''}
-                  variant="outlined"
-                />
-                <TextField
-                  className={classes.textField}
-                  error={hasError('lastName')}
-                  fullWidth
-                  helperText={
-                    hasError('lastName') ? formState.errors.lastName[0] : null
-                  }
-                  label="Last name"
-                  name="lastName"
-                  onChange={handleChange}
-                  type="text"
-                  value={formState.values.lastName || ''}
-                  variant="outlined"
-                />
-                <TextField
-                  className={classes.textField}
-                  error={hasError('email')}
-                  fullWidth
-                  helperText={
-                    hasError('email') ? formState.errors.email[0] : null
-                  }
-                  label="Email address"
-                  name="email"
-                  onChange={handleChange}
-                  type="text"
-                  value={formState.values.email || ''}
-                  variant="outlined"
-                />
-                <TextField
-                  className={classes.textField}
-                  error={hasError('password')}
-                  fullWidth
-                  helperText={
-                    hasError('password') ? formState.errors.password[0] : null
-                  }
-                  label="Password"
-                  name="password"
-                  onChange={handleChange}
-                  type="password"
-                  value={formState.values.password || ''}
-                  variant="outlined"
-                />
-                <div className={classes.policy}>
-                  <Checkbox
-                    checked={formState.values.policy || false}
-                    className={classes.policyCheckbox}
-                    color="primary"
-                    name="policy"
-                    onChange={handleChange}
-                  />
-                  <Typography
-                    className={classes.policyText}
-                    color="textSecondary"
-                    variant="body1"
-                  >
-                    I have read the{' '}
-                    <Link
-                      color="primary"
-                      component={RouterLink}
-                      to="#"
-                      underline="always"
-                      variant="h6"
-                    >
-                      Terms and Conditions
-                    </Link>
-                  </Typography>
-                </div>
-                {hasError('policy') && (
-                  <FormHelperText error>
-                    {formState.errors.policy[0]}
-                  </FormHelperText>
-                )}
-                <Button
-                  className={classes.signUpButton}
-                  color="primary"
-                  disabled={!formState.isValid}
-                  fullWidth
-                  size="large"
-                  type="submit"
-                  variant="contained"
-                >
-                  Sign up now
-                </Button>
-                <Typography
-                  color="textSecondary"
-                  variant="body1"
-                >
-                  Have an account?{' '}
-                  <Link
-                    component={RouterLink}
-                    to="/sign-in"
-                    variant="h6"
-                  >
-                    Sign in
-                  </Link>
-                </Typography>
-              </form>
-            </div>
-          </div>
-        </Grid>
-      </Grid>
+    <div className={classes.root}> 
+      Cool
     </div>
   );
-};
+};*/
 
-SignUp.propTypes = {
-  history: PropTypes.object
-};
 
-export default withRouter(SignUp);
+
+class SignUp extends Component{
+  constructor(props){
+      super(props);
+
+      this.state = {
+          firstname: "", 
+          lastname: "", 
+          email: "", 
+          password: "",
+          pharmacy:"", 
+          connected: false,
+          pharmacists:[],
+          pharmacies:[],
+      };
+  }
+
+  componentDidMount(){
+    axios.get('http://localhost:5000/sign-up/')
+      .then(res => {
+        console.log(res.data)
+        this.setState({pharmacists: res.data})
+      })
+      .catch((error)=> {
+        console.log(error);
+      });
+      axios.get('http://localhost:5000/pharmacies/')
+      .then(res => {
+        console.log(res.data)
+        this.setState({
+          pharmacies: res.data.map(pharmacy => pharmacy.name),
+          pharmacy: res.data[0].name
+        })
+      })
+      .catch((error)=> {
+        console.log(error);
+      });
+  }
+
+  checkPharmacist = () => {
+      //recover the tab of pharmacists
+
+      //in the tab search if there is a person corresponding to the one that is trying to sign in
+      var searchPharmacist = this.state.pharmacists.find(function(element) {
+          return element.email === this.state.email;
+        }, this);
+
+      //doesn't exist, can create user
+      if(this.state.lastname === "" || this.state.firstname === "" || this.state.email === ""  || this.state.password === "" || this.state.pharmacy == "Choose your pharmacy"){
+          alert('Fill correctly the form');
+      }
+      else{
+          if(searchPharmacist === undefined) {
+            this.createPharmacist();
+            console.log(this.state.pharmacists);
+            this.setState({connected: true});
+        }
+        else {
+            console.log("pharmacist already exists");
+            this.setState({email: "", password: ""});  
+            alert("This email is already taken ! Please choose another one.");
+        }
+      }
+      
+      
+  }
+
+  createPharmacist = () => {
+      var pharmacist = {
+          firstname: this.state.firstname,
+          lastname: this.state.lastname,
+          email: this.state.email,
+          password: this.state.password,
+          pharmacy: this.state.pharmacy,
+      };
+      console.log("POST");
+      console.log(pharmacist);
+      axios.post('http://localhost:5000/sign-up/add', pharmacist)
+      .then(res => {
+        //this.setState({pharmacists: res.data})
+        console.log(res.data);
+      })
+      .catch((error)=> {
+        console.log(error);
+      });
+
+     axios.get('http://localhost:5000/sign-up/')
+      .then(res => {
+        this.setState({pharmacists: res.data})
+      })
+      .catch((error)=> {
+        console.log(error);
+      });
+      //this.state.pharmacists.push(pharmacist);
+      console.log("PTN");
+      console.log(this.state.pharmacists);
+      
+  }
+
+  handleChangeFirstName = (event) => {
+      this.setState({firstname: event.target.value});
+  }
+
+  handleChangeLastName = (event) => {
+      this.setState({lastname: event.target.value});
+  }
+
+  handleChangeEmail = (event) => {
+      this.setState({email: event.target.value});
+  }
+
+  handleChangePharmacy = (event) => {
+    this.setState({pharmacy: event.target.value});
+  }
+
+  handleChangePassword = (event) => {
+      this.setState({password: event.target.value});
+  }
+
+
+  render() {
+    if(this.state.connected){
+      return( <Redirect to="/products" />);  
+    }
+    else{
+      return (
+        <div >
+            <div> 
+                <h1>Sign Up</h1>  
+            </div>
+            <div className="SignForm">
+                <Row>
+                    <Col md="4" />
+                    <Col md="4">
+                        <Form > 
+                            <FormGroup>
+                                <Label for="UserFirstName">Firstname: </Label>
+                                <Input value={this.state.firstname} onChange={this.handleChangeFirstName} type="text" name="text" id="UserFirstName" placeholder="Type your first name" required />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="UserLastName">Lastname: </Label>
+                                <Input value={this.state.lastname} onChange={this.handleChangeLastName} type="text" name="text" id="UserLastName" placeholder="Type your last name" required />
+                            </FormGroup>
+                            <FormGroup>
+                              <Label for="PharmacyName">Pharmacy: </Label>
+                              <select ref="userInput" name="PharmacyName" value={this.state.pharmacy} onChange={this.handleChangePharmacy} type ="select" placeholder="Choose the brand">
+                                {
+                                  this.state.pharmacies.map(function(pharmacy) {
+                                    return <option key={pharmacy} value={pharmacy}>{pharmacy} </option>;
+                                  })
+                                }
+                              </select>
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="UserEmail">Email: </Label>
+                                <Input value={this.state.email} onChange={this.handleChangeEmail} type="email" name="email" id="UserEmail" placeholder="Type your email" required />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="UserPassword">Password: </Label>
+                                <Input value={this.state.password} onChange={this.handleChangePassword} type="password" name="password" id="UserPassword" placeholder="Type your password" required />
+                            </FormGroup>
+                            <Button color="success" onClick={this.checkPharmacist}>Create account</Button>
+                        </Form>
+                    </Col>
+                    <Col md="4" />
+                </Row>
+            </div>
+        </div>
+    );
+    }
+  }
+}
+
+export default SignUp;

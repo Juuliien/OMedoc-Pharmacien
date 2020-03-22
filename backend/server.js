@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const secret = process.env['SECRET'];
+
 
 require('dotenv').config();
 
@@ -17,7 +17,6 @@ const uri = process.env.ATLAS_CONNECTION;
 //const uri = 'mongodb+srv://cynaye:cynaye@cluster-ppe-mbpz6.mongodb.net/test?retryWrites=true&w=majority';
 //const uri = 'mongodb+srv://cynaye:cynaye@cluster0-38xs5.mongodb.net/test?retryWrites=true&w=majority';//mine
 
-
 mongoose.connect(uri, {
     useNewUrlParser: true, 
     useUnifiedTopology: true
@@ -29,8 +28,12 @@ connection.once('open', () => {
 })
 
 const productsRouter = require('./routes/products');
+const pharmacistsRouter = require('./routes/pharmacists');
+const pharmaciesRouter = require('./routes/pharmacies');
 
 app.use('/products', productsRouter);
+app.use('/sign-up', pharmacistsRouter);
+app.use('/pharmacies', pharmaciesRouter);
 
 //Start server
 app.listen(port, () =>{
