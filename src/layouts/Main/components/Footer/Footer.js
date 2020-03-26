@@ -31,10 +31,7 @@ const Footer = props => {
         </Link>
         . 2020
       </Typography>
-      <Typography variant="caption">
-        Created with love for the environment. By designers and developers who
-        love to work together in offices!
-      </Typography>
+      
     </div>
   );
 };

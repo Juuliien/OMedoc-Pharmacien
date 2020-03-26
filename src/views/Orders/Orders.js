@@ -50,7 +50,7 @@ const statusColors = {
   refunded: 'danger'
 };
 
-const LatestOrders = props => {
+const Orders = props => {
   const { className, ...rest } = props;
 
   const classes = useStyles();
@@ -72,7 +72,7 @@ const LatestOrders = props => {
             New entry
           </Button>
         }
-        title="Latest Orders"
+        title="Commandes en cours"
       />
       <Divider />
       <CardContent className={classes.content}>
@@ -81,8 +81,8 @@ const LatestOrders = props => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Order Ref</TableCell>
-                  <TableCell>Customer</TableCell>
+                  <TableCell>Référence</TableCell>
+                  <TableCell>Client</TableCell>
                   <TableCell sortDirection="desc">
                     <Tooltip
                       enterDelay={300}
@@ -141,7 +141,7 @@ const LatestOrders = props => {
   );
 };
 
-LatestOrders.propTypes = {
+Orders.propTypes = {
   className: PropTypes.string
 };
 

@@ -3,10 +3,10 @@ import uuid from 'uuid/v1';
 export default [
   {
     id: uuid(),
-    ref: 'CDD1049',
+    ref: 'F15246',
     amount: 30.5,
     customer: {
-      name: 'Ekaterina Tankova'
+      name: 'Paul marchesnay'
     },
     createdAt: 1555016400000,
     status: 'pending'
@@ -16,7 +16,7 @@ export default [
     ref: 'CDD1048',
     amount: 25.1,
     customer: {
-      name: 'Cao Yu'
+      name: 'Raphael Daici'
     },
     createdAt: 1555016400000,
     status: 'delivered'
