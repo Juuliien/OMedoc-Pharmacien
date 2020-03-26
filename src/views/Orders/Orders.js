@@ -69,7 +69,7 @@ const Orders = props => {
             size="small"
             variant="outlined"
           >
-            New entry
+            Actualiser
           </Button>
         }
         title="Commandes en cours"
@@ -134,7 +134,7 @@ const Orders = props => {
           size="small"
           variant="text"
         >
-          View all <ArrowRightIcon />
+          Voir tout <ArrowRightIcon />
         </Button>
       </CardActions>
     </Card>

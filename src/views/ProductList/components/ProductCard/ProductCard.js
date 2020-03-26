@@ -10,8 +10,8 @@ import {
   Grid,
   Divider
 } from '@material-ui/core';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import GetAppIcon from '@material-ui/icons/GetApp';
+
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -81,24 +81,19 @@ const ProductCard = props => {
             className={classes.statsItem}
             item
           >
-            <AccessTimeIcon className={classes.statsIcon} />
-            <Typography
-              display="inline"
-              variant="body2"
-            >
-              Updated 2hr ago
-            </Typography>
+          
+            
           </Grid>
           <Grid
             className={classes.statsItem}
             item
           >
-            <GetAppIcon className={classes.statsIcon} />
+            <AddShoppingCartIcon className={classes.statsIcon} />
             <Typography
               display="inline"
               variant="body2"
             >
-              {product.totalDownloads} Downloads
+              {product.totalDownloads} Achats
             </Typography>
           </Grid>
         </Grid>

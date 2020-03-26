@@ -3,9 +3,10 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Divider, Drawer } from '@material-ui/core';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-
+//import DashboardIcon from '@material-ui/icons/Dashboard';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import { Profile, SidebarNav} from './components';
@@ -42,7 +43,7 @@ const Sidebar = props => {
     {
       title: 'Dashboard',
       href: '/dashboard',
-      icon: <DashboardIcon />
+      icon: <EqualizerIcon />
     },
     {
       title: 'Products',
@@ -52,11 +53,8 @@ const Sidebar = props => {
     {
       title: 'Commande en cours',
       href: '/Orders',
+      icon: <LibraryBooksIcon />
       
-    },
-    {
-      title:'Commande prête',
-      href : '/readyorder',
     },
     {
       title: 'Account',
